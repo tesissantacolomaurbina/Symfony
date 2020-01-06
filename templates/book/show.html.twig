@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book Detail{% endblock %}
+
+{% block body %}
+    <div class="text-center py-5">
+        <h2 class="text-center py-5"> Informacion del Libro </h2>
+    <div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Titulo</td>
+                <td>Isbn</td>
+                <td>Editorial</td>
+                <td>Año de Publicación</td>
+                <td>Actions</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{book.id}}</td>
+                <td>{{book.name}}</td>
+                <td>{{book.isbn}}</td>
+                <td>{{book.editorial}}</td>
+                <td>{{book.publishYear}}<td>
+                {% if is_granted('ROLE_ADMIN') %}
+                <a href={{path('book.update',{id: book.id})}}> Editar <a>
+                <a href={{path('book.remove',{id: book.id})}}> Eliminar<a>
+                {% else %}
+                <a href={{path('book.show',{id: book.id})}}> Reservar<a>
+                {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

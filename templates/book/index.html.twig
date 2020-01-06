@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{controller_name}}!{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-error">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="text-center py-5">
+        <h2 class="text-center py-5"> Biblioteca</h2>
+        <form class="form-inline mb-5">
+            <div class="ml-auto mr-auto">
+            {# <input class="form-control mr-sm-2" type="search" placeholder="" aria-label="Search">
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Buscar</button> #}
+            {% if is_granted('ROLE_ADMIN') %}
+            <a href={{path('book.create')}} class="btn btn btn-primary my-2 my-sm-0" role="button">Crear</a>
+            {% endif %}
+            {# <button class="btn btn btn-primary my-2 my-sm-0">+Crear Libro</button> #}
+            </div>
+        </form>
+    <div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Titulo</td>
+                <td>Isbn</td>
+                <td>Editorial</td>
+                <td>Año de Publicacion</td>
+                <td>Autor</td>
+                <td>Actions</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td>{{book.id}}</td>
+                <td>{{book.name}}</td>
+                <td>{{book.isbn}}</td>
+                <td>{{book.editorial}}</td>
+                <td>{{book.publishYear}}
+                <td>{{book.author}}</td>
+                <td>
+                {% if is_granted('ROLE_ADMIN') %}
+                <a href={{path('book.show',{id: book.id})}}> Ver <a>
+                <a href={{path('book.update',{id: book.id})}}> Editar <a>
+                <a href={{path('book.remove',{id: book.id})}}> Eliminar<a>
+                {% else %}
+                {# <a href={{path('user_book.create', {id: app.user.id, bookId:book.id })}}>Reservar<a> #}
+                <a href={{path('user_book.reserve', {id: book.id})}}>Reservar<a>
+                {% endif %}
+                </td>
+            </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

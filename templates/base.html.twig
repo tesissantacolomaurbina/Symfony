@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+        <style>
+            /* Stackoverflow preview fix, please ignore */
+            .navbar-nav {
+            flex-direction: row;
+            }
+            
+            .nav-link {
+            padding-right: .5rem !important;
+            padding-left: .5rem !important;
+            }
+            
+            /* Fixes dropdown menus placed on the right side */
+            .ml-auto .dropdown-menu {
+            left: auto !important;
+            right: 0px;
+            }
+        </style>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href={{path('book.index')}}>Biblioteca</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}  
+                        {% if is_granted('ROLE_ADMIN') %}
+                            {# <li class="nav-item active">
+                                <a class="nav-link" href={{path('book.index')}}>Mis Libros</a>
+                            </li> #}
+                        {% else %}
+                            <li class="nav-item active">
+                                {# {{dump(app.user.id)}} #}
+                                <a class="nav-link" href={{path('user_book.index',{id: app.user.id})}}>Mis Reservas</a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                </ul>
+
+                <ul class="navbar-nav ml-auto">
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href={{path('app_logout')}}>Cerrar Sesión</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href={{path('app_login')}}>Iniciar Sesión</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href={{path('register')}}>Registrar</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+        {% block body %}{% endblock %}
+        </div>
+        {% block javascripts %}{% endblock %}
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    </body>
+</html>
