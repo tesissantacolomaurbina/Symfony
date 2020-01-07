@@ -50,20 +50,12 @@ class UserBookController extends AbstractController
         $em->remove($userbook[0]);
         $em->flush();
 
-        // Aumentar contador de libros y guardar en base de datos
-        // $em = $this->getDoctrine()->getManager();
-        // $em->persist($book);
-        // $em->flush();
+     
 
         $this->addFlash('success','Libro retornado con éxito');
-        //dump($request);
-        // $book = $bookRepository->find($id);
-        // dump($book);
+     
         return $this->redirect($this->generateUrl('user_book.index'));
-        // return $this->render('book/show.html.twig', [
-        //     'controller_name' => 'BookController', 'book' => $book
-        // ]);
-
+  
     }
 
 
@@ -75,9 +67,7 @@ class UserBookController extends AbstractController
         dump($book);
         $userId = null !== $user ? $user->getId() : null;
         dump($userId);
-        // $userbook = $userBookRepository->findBy(array('user' => $user, 'book' => $book));
-        // dump($userbook);
-
+     
         //
         //Validar contador de libros
         //Condicional if (success) : (error)
@@ -95,13 +85,9 @@ class UserBookController extends AbstractController
         $this->addFlash('success','Libro reservado con éxito');
 
 
-        //dump($request);
-        // $book = $bookRepository->find($id);
-        // dump($book);
+    
         return $this->redirect($this->generateUrl('book.index'));
-        // return $this->render('book/show.html.twig', [
-        //     'controller_name' => 'BookController', 'book' => $book
-        // ]);
+      
 
     }
 }

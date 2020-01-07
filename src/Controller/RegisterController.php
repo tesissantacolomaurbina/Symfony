@@ -53,9 +53,7 @@ class RegisterController extends AbstractController
             $em->flush();
             return $this->redirect($this->generateUrl('app_login'));
         }
-        // return $this->render('book/create.html.twig', [
-        //     'form' => $form->createView()
-        // ]);
+       
 
         return $this->render('register/index.html.twig', [
             'controller_name' => 'RegisterController', 'form' => $form->createView()

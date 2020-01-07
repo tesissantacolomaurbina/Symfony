@@ -41,13 +41,12 @@ class BookController extends AbstractController
      */
     public function create(Request $request, AuthorRepository $authorRepository)
     {
-        //dump($request);
-        // dump($authorRepository->findAll());
+        
 
         $book = new Book();
 
         $form = $this->createForm(BookType::class, $book);
-        // $book->setName('Dani');
+    
         $form->handleRequest($request);
         
         if ( $form->isSubmitted() && $form->isValid()){
@@ -94,9 +93,7 @@ class BookController extends AbstractController
     // public function show($id, BookRepository $bookRepository)
     public function show(Book $book)
     {
-        //dump($request);
-        // $book = $bookRepository->find($id);
-        // dump($book);
+        
         return $this->render('book/show.html.twig', [
             'controller_name' => 'BookController', 'book' => $book
         ]);
@@ -115,13 +112,9 @@ class BookController extends AbstractController
         $em->remove($book);
         $em->flush();
         $this->addFlash('success','Libro eliminado con éxito');
-        //dump($request);
-        // $book = $bookRepository->find($id);
-        // dump($book);
+       
         return $this->redirect($this->generateUrl('book.index'));
-        // return $this->render('book/show.html.twig', [
-        //     'controller_name' => 'BookController', 'book' => $book
-        // ]);
+       
 
 
     }
