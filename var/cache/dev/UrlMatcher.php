@@ -16,7 +16,6 @@ return [
         '/authors' => [[['_route' => 'author', '_controller' => 'App\\Controller\\AuthorController::index'], null, null, null, true, false, null]],
         '/book' => [[['_route' => 'book.index', '_controller' => 'App\\Controller\\BookController::index'], null, null, null, true, false, null]],
         '/book/create' => [[['_route' => 'book.create', '_controller' => 'App\\Controller\\BookController::create'], null, null, null, false, false, null]],
-        '/main2' => [[['_route' => 'main2', '_controller' => 'App\\Controller\\Main2Controller::index'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'home', '_controller' => 'App\\Controller\\MainController::index'], null, null, null, false, false, null]],
         '/register' => [[['_route' => 'register', '_controller' => 'App\\Controller\\RegisterController::register'], null, null, null, false, false, null]],
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],

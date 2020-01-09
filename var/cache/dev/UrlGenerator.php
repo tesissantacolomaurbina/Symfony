@@ -21,7 +21,6 @@ return [
     'book.update' => [['id'], ['_controller' => 'App\\Controller\\BookController::update'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/book/update']], [], []],
     'book.show' => [['id'], ['_controller' => 'App\\Controller\\BookController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/book/show']], [], []],
     'book.remove' => [['id'], ['_controller' => 'App\\Controller\\BookController::remove'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/book/remove']], [], []],
-    'main2' => [[], ['_controller' => 'App\\Controller\\Main2Controller::index'], [], [['text', '/main2']], [], []],
     'home' => [[], ['_controller' => 'App\\Controller\\MainController::index'], [], [['text', '/']], [], []],
     'register' => [[], ['_controller' => 'App\\Controller\\RegisterController::register'], [], [['text', '/register']], [], []],
     'app_login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], []],
