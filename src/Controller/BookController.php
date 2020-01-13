@@ -16,7 +16,6 @@ use App\Repository\UserBookRepository;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 
-
 /**
  * @Route("/book", name="book.")
  */
@@ -82,15 +81,12 @@ class BookController extends AbstractController
         return $this->render('book/create.html.twig', [
             'form' => $form->createView()
         ]);
-        // return new Response('Post was created');
-
 
     }
 
      /**
      *  @Route("/show/{id}", name="show")
      */
-    // public function show($id, BookRepository $bookRepository)
     public function show(Book $book)
     {
         
@@ -104,7 +100,6 @@ class BookController extends AbstractController
          /**
      *  @Route("/remove/{id}", name="remove")
      */
-    // public function remove($id, BookRepository $bookRepository)
     public function remove(Book $book)
     {
 
